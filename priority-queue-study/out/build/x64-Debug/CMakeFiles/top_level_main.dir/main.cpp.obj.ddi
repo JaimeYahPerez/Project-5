@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\top_level_main.dir\\main.cpp.obj",
+            "outputs": [
+                "C:\\Users\\Dogem\\Downloads\\priority-queue-study\\priority-queue-study\\out\\build\\x64-Debug\\vc140.pdb",
+                "CMakeFiles\\top_level_main.dir\\main.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}

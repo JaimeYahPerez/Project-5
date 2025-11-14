@@ -1,0 +1,2 @@
+#pragma code_page(65001)
+1 /* CREATEPROCESS_MANIFEST_RESOURCE_ID */ 24 /* RT_MANIFEST */ "C:/Users/Dogem/Downloads/priority-queue-study/priority-queue-study/out/build/x64-Debug/src/implementations/BinaryHeapInVector/CMakeFiles/BinaryHeapInVector.dir/embed.manifest"

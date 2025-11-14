@@ -1,0 +1,15 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles\harness.dir\src\harness\main.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\src\implementations\BinaryHeapInVector\BinaryHeapInVector.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\utils\comparator.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\src\implementations\BinomialQueues\BinomialQueue.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\src\implementations\BinomialQueues\BQnode.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\src\implementations\LinearBaseLine\LinearBaseLine.cpp.obj: dyndep
+
+build CMakeFiles\harness.dir\src\implementations\Oracle\QuadraticOracle.cpp.obj: dyndep
+

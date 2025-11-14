@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\harness.dir\\utils\\comparator.cpp.obj",
+            "outputs": [
+                "C:\\Users\\Dogem\\Downloads\\priority-queue-study\\priority-queue-study\\out\\build\\x64-Debug\\vc140.pdb",
+                "CMakeFiles\\harness.dir\\utils\\comparator.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}

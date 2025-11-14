@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "CMakeFiles\\huffman_trace.dir\\src\\trace-generators\\huffman_coding\\main.cpp.obj",
+            "outputs": [
+                "C:\\Users\\Dogem\\Downloads\\priority-queue-study\\priority-queue-study\\out\\build\\x64-Debug\\vc140.pdb",
+                "CMakeFiles\\huffman_trace.dir\\src\\trace-generators\\huffman_coding\\main.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}
