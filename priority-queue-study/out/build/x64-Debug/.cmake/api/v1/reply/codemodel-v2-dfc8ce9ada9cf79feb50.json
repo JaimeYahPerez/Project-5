@@ -1,0 +1,166 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"jsonFile" : "directory-.-Debug-f6f22219c74102c3da70.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "4.0"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "src/implementations/BinaryHeapInVector",
+					"jsonFile" : "directory-src.implementations.BinaryHeapInVector-Debug-7a4c763d5eb89a8b9030.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "4.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "src/implementations/BinaryHeapInVector",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "utils/comparator.cpp",
+					"jsonFile" : "directory-utils.comparator.cpp-Debug-ba78cfd2bad8198e2d3f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 2,
+					"source" : "src/implementations/BinomialQueues",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1,
+						2
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "priority-queue-study",
+					"targetIndexes" : 
+					[
+						2,
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "BinaryHeapInVector",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "BinomialQueues",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "BinaryHeapInVector::@dc84c99316c65ee76636",
+					"jsonFile" : "target-BinaryHeapInVector-Debug-c31b1eaa69460503c873.json",
+					"name" : "BinaryHeapInVector",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "BinomialQueues::@86270732a5d6a63edb4b",
+					"jsonFile" : "target-BinomialQueues-Debug-a586d042889bf90561ad.json",
+					"name" : "BinomialQueues",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "batch_then_drain_trace::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-batch_then_drain_trace-Debug-6e8c1632b5846d32711d.json",
+					"name" : "batch_then_drain_trace",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "harness::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-harness-Debug-78b4c196c8514b290230.json",
+					"name" : "harness",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "huffman_trace::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-huffman_trace-Debug-3c5e5274766a9b2d10c9.json",
+					"name" : "huffman_trace",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "top_level_main::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-top_level_main-Debug-cbcde2408916e767efd5.json",
+					"name" : "top_level_main",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Dogem/Downloads/priority-queue-study/priority-queue-study/out/build/x64-Debug",
+		"source" : "C:/Users/Dogem/Downloads/priority-queue-study/priority-queue-study"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 9
+	}
+}

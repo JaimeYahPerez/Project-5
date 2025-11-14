@@ -1,0 +1,9 @@
+ninja_dyndep_version = 1.0
+build src\implementations\BinaryHeapInVector\CMakeFiles\BinaryHeapInVector.dir\main.cpp.obj: dyndep
+
+build src\implementations\BinaryHeapInVector\CMakeFiles\BinaryHeapInVector.dir\BinaryHeapInVector.cpp.obj: dyndep
+
+build src\implementations\BinaryHeapInVector\CMakeFiles\BinaryHeapInVector.dir\__\__\__\utils\comparator.cpp.obj: dyndep
+
+build src\implementations\BinaryHeapInVector\CMakeFiles\BinaryHeapInVector.dir\__\__\__\utils\TraceConfig.cpp.obj: dyndep
+

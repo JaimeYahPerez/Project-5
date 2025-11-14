@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "revision": 0,
+    "rules": [
+        {
+            "primary-output": "src\\implementations\\BinaryHeapInVector\\CMakeFiles\\BinaryHeapInVector.dir\\__\\__\\__\\utils\\TraceConfig.cpp.obj",
+            "outputs": [
+                "C:\\Users\\Dogem\\Downloads\\priority-queue-study\\priority-queue-study\\out\\build\\x64-Debug\\vc140.pdb",
+                "src\\implementations\\BinaryHeapInVector\\CMakeFiles\\BinaryHeapInVector.dir\\__\\__\\__\\utils\\TraceConfig.cpp.obj.ddi"
+            ],
+            "requires": []
+        }
+    ]
+}
