@@ -23,9 +23,9 @@ void generateTrace(const unsigned seed,
     out << config.profileName << " " << n << " " << seed << std::endl;
 
     // Generate N inserts.
+    int spaceBeforeNumber = 10;
     for (unsigned id = 0; id < n; ++id) {
-        out << "I " << "          " << dist(gen)
-            << "          " << id << "\n";
+        out << "I " << std::setw(spaceBeforeNumber) << dist(gen) << std::setw(spaceBeforeNumber) << id << "\n";
     }
 
     // Generate N extract-mins (drain)
@@ -49,7 +49,7 @@ int main() {
             // duplicates. So, we use choose_key_upper_bound to increase
             // the upperbound according to the size of the trace.
             const int key_min = 1;
-            const int key_max = static_cast<int>(8 * n); // or an even larger fixed bound
+            const int key_max = static_cast<int>(1 << 20); // or an even larger fixed bound
             std::uniform_int_distribution<int> dist(key_min, key_max);
 
             generateTrace(seed, n, config, dist, rng);

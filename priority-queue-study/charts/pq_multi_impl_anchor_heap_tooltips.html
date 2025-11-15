@@ -45,7 +45,7 @@
 </head>
 <body>
   <div class="container">
-    <h1>Priority Queues — Huffman Trace Timing (Multiple Implementations)</h1>
+    <h1>Priority Queues — Batch then Drain Trace Timing (Multiple Implementations)</h1>
 
     <div class="card">
       <div class="row">
@@ -68,48 +68,49 @@
   <script>
   // Default CSV (refreshed; removed the highest quadratic row as requested)
   const defaultCsv = `impl,profile,trace_path,N,seed,elapsed_ms,ops_total,inserts,findmins,deletemins,extractmins
-quadratic_oracle,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,13.7133,4093,2047,0,0,2046
-binary_heap,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,0.841125,4093,2047,0,0,2046
-binomial_queue,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,2.64117,4093,2047,0,0,2046
-linear_base,huffman_coding,huffman_coding_N_1024_S_23.trace,1024,23,0.078833,4093,2047,0,0,2046
-binary_heap,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,2016.43,4194301,2097151,0,0,2097150
-binomial_queue,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,7077.89,4194301,2097151,0,0,2097150
-linear_base,huffman_coding,huffman_coding_N_1048576_S_23.trace,1048576,23,95.6467,4194301,2097151,0,0,2097150
-binary_heap,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,207.664,524285,262143,0,0,262142
-binomial_queue,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,669.186,524285,262143,0,0,262142
-linear_base,huffman_coding,huffman_coding_N_131072_S_23.trace,131072,23,11.7492,524285,262143,0,0,262142
-quadratic_oracle,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.014375,49,25,0,0,24
-binary_heap,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.004333,49,25,0,0,24
-binomial_queue,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.022375,49,25,0,0,24
-linear_base,huffman_coding,huffman_coding_N_13_S_23.trace,23,13,0.001208,49,25,0,0,24
-quadratic_oracle,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,3549.36,65533,32767,0,0,32766
-binary_heap,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,20.3544,65533,32767,0,0,32766
-binomial_queue,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,67.1699,65533,32767,0,0,32766
-linear_base,huffman_coding,huffman_coding_N_16384_S_23.trace,16384,23,1.48092,65533,32767,0,0,32766
-quadratic_oracle,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,57.8554,8189,4095,0,0,4094
-binary_heap,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,2.03133,8189,4095,0,0,4094
-binomial_queue,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,6.88708,8189,4095,0,0,4094
-linear_base,huffman_coding,huffman_coding_N_2048_S_23.trace,2048,23,0.162292,8189,4095,0,0,4094
-binary_heap,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,431.602,1048573,524287,0,0,524286
-binomial_queue,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,1484.19,1048573,524287,0,0,524286
-linear_base,huffman_coding,huffman_coding_N_262144_S_23.trace,262144,23,22.6679,1048573,524287,0,0,524286
-binary_heap,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,43.3026,131069,65535,0,0,65534
-binomial_queue,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,140.477,131069,65535,0,0,65534
-linear_base,huffman_coding,huffman_coding_N_32768_S_23.trace,32768,23,2.69304,131069,65535,0,0,65534
-quadratic_oracle,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,226.603,16381,8191,0,0,8190
-binary_heap,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,4.37808,16381,8191,0,0,8190
-binomial_queue,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,13.8574,16381,8191,0,0,8190
-linear_base,huffman_coding,huffman_coding_N_4096_S_23.trace,4096,23,0.349792,16381,8191,0,0,8190
-binary_heap,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,934.516,2097149,1048575,0,0,1048574
-binomial_queue,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,3404.26,2097149,1048575,0,0,1048574
-linear_base,huffman_coding,huffman_coding_N_524288_S_23.trace,524288,23,45.8118,2097149,1048575,0,0,1048574
-binary_heap,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,92.8982,262141,131071,0,0,131070
-binomial_queue,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,302.342,262141,131071,0,0,131070
-linear_base,huffman_coding,huffman_coding_N_65536_S_23.trace,65536,23,5.4025,262141,131071,0,0,131070
-quadratic_oracle,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,850.886,32765,16383,0,0,16382
-binary_heap,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,9.42246,32765,16383,0,0,16382
-binomial_queue,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,30.933,32765,16383,0,0,16382
-linear_base,huffman_coding,huffman_coding_N_8192_S_23.trace,8192,23,0.685458,32765,16383,0,0,16382`;
+quadratic_oracle,batch_then_drain,batch_then_drain_N_1024_S_23.trace,1024,23,39.8858,2048,1024,0,0,1024
+binary_heap,batch_then_drain,batch_then_drain_N_1024_S_23.trace,1024,23,1.7013,2048,1024,0,0,1024
+binomial_queue,batch_then_drain,batch_then_drain_N_1024_S_23.trace,1024,23,4.673,2048,1024,0,0,1024
+linear_base,batch_then_drain,batch_then_drain_N_1024_S_23.trace,1024,23,0.189,2048,1024,0,0,1024
+binary_heap,batch_then_drain,batch_then_drain_N_1048576_S_23.trace,1048576,23,2305.69,2097152,1048576,0,0,1048576
+binomial_queue,batch_then_drain,batch_then_drain_N_1048576_S_23.trace,1048576,23,8568.45,2097152,1048576,0,0,1048576
+linear_base,batch_then_drain,batch_then_drain_N_1048576_S_23.trace,1048576,23,130.322,2097152,1048576,0,0,1048576
+binary_heap,batch_then_drain,batch_then_drain_N_131072_S_23.trace,131072,23,222.236,262144,131072,0,0,131072
+binomial_queue,batch_then_drain,batch_then_drain_N_131072_S_23.trace,131072,23,758.29,262144,131072,0,0,131072
+linear_base,batch_then_drain,batch_then_drain_N_131072_S_23.trace,131072,23,13.4864,262144,131072,0,0,131072
+quadratic_oracle,batch_then_drain,batch_then_drain_N_13_S_23.trace,13,23,0.0069,26,13,0,0,13
+binary_heap,batch_then_drain,batch_then_drain_N_13_S_23.trace,13,23,0.0067,26,13,0,0,13
+binomial_queue,batch_then_drain,batch_then_drain_N_13_S_23.trace,13,23,0.0216,26,13,0,0,13
+linear_base,batch_then_drain,batch_then_drain_N_13_S_23.trace,13,23,0.0024,26,13,0,0,13
+quadratic_oracle,batch_then_drain,batch_then_drain_N_16384_S_23.trace,16384,23,5532.01,32768,16384,0,0,16384
+binary_heap,batch_then_drain,batch_then_drain_N_16384_S_23.trace,16384,23,22.9378,32768,16384,0,0,16384
+binomial_queue,batch_then_drain,batch_then_drain_N_16384_S_23.trace,16384,23,71.2228,32768,16384,0,0,16384
+linear_base,batch_then_drain,batch_then_drain_N_16384_S_23.trace,16384,23,1.6973,32768,16384,0,0,16384
+quadratic_oracle,batch_then_drain,batch_then_drain_N_2048_S_23.trace,2048,23,89.9774,4096,2048,0,0,2048
+binary_heap,batch_then_drain,batch_then_drain_N_2048_S_23.trace,2048,23,2.6127,4096,2048,0,0,2048
+binomial_queue,batch_then_drain,batch_then_drain_N_2048_S_23.trace,2048,23,9.2439,4096,2048,0,0,2048
+linear_base,batch_then_drain,batch_then_drain_N_2048_S_23.trace,2048,23,0.3883,4096,2048,0,0,2048
+binary_heap,batch_then_drain,batch_then_drain_N_262144_S_23.trace,262144,23,478.016,524288,262144,0,0,262144
+binomial_queue,batch_then_drain,batch_then_drain_N_262144_S_23.trace,262144,23,1720.66,524288,262144,0,0,262144
+linear_base,batch_then_drain,batch_then_drain_N_262144_S_23.trace,262144,23,46.282,524288,262144,0,0,262144
+quadratic_oracle,batch_then_drain,batch_then_drain_N_32768_S_23.trace,32768,23,22695.4,65536,32768,0,0,32768
+binary_heap,batch_then_drain,batch_then_drain_N_32768_S_23.trace,32768,23,49.7234,65536,32768,0,0,32768
+binomial_queue,batch_then_drain,batch_then_drain_N_32768_S_23.trace,32768,23,156.39,65536,32768,0,0,32768
+linear_base,batch_then_drain,batch_then_drain_N_32768_S_23.trace,32768,23,3.3258,65536,32768,0,0,32768
+quadratic_oracle,batch_then_drain,batch_then_drain_N_4096_S_23.trace,4096,23,343.896,8192,4096,0,0,4096
+binary_heap,batch_then_drain,batch_then_drain_N_4096_S_23.trace,4096,23,4.7635,8192,4096,0,0,4096
+binomial_queue,batch_then_drain,batch_then_drain_N_4096_S_23.trace,4096,23,15.5146,8192,4096,0,0,4096
+linear_base,batch_then_drain,batch_then_drain_N_4096_S_23.trace,4096,23,0.4638,8192,4096,0,0,4096
+binary_heap,batch_then_drain,batch_then_drain_N_524288_S_23.trace,524288,23,1040.54,1048576,524288,0,0,524288
+binomial_queue,batch_then_drain,batch_then_drain_N_524288_S_23.trace,524288,23,3888.48,1048576,524288,0,0,524288
+linear_base,batch_then_drain,batch_then_drain_N_524288_S_23.trace,524288,23,56.7181,1048576,524288,0,0,524288
+binary_heap,batch_then_drain,batch_then_drain_N_65536_S_23.trace,65536,23,106.32,131072,65536,0,0,65536
+binomial_queue,batch_then_drain,batch_then_drain_N_65536_S_23.trace,65536,23,340.161,131072,65536,0,0,65536
+linear_base,batch_then_drain,batch_then_drain_N_65536_S_23.trace,65536,23,6.778,131072,65536,0,0,65536
+quadratic_oracle,batch_then_drain,batch_then_drain_N_8192_S_23.trace,8192,23,1394.79,16384,8192,0,0,8192
+binary_heap,batch_then_drain,batch_then_drain_N_8192_S_23.trace,8192,23,10.2998,16384,8192,0,0,8192
+binomial_queue,batch_then_drain,batch_then_drain_N_8192_S_23.trace,8192,23,35.3713,16384,8192,0,0,8192
+linear_base,batch_then_drain,batch_then_drain_N_8192_S_23.trace,8192,23,0.8654,16384,8192,0,0,8192`;
 
   // Fixed colors + fallback palette
   const fixedColors = {
