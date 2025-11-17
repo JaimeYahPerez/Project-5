@@ -8,6 +8,7 @@
 #include<string>
 #include<vector>
 #include<cassert>
+#include<filesystem>
 #include<iostream>
 
 struct TraceConfig {
@@ -25,7 +26,7 @@ struct TraceConfig {
 
     std::vector<unsigned> seeds = {23};  // only one seed to get started.
     std::vector<unsigned> Ns;
-    std::string traceDirectory = "../../../traces"; // awkward!
+    std::string traceDirectory = (std::filesystem::path(__FILE__).parent_path().parent_path() / "traces").string();
     std::string implementationName;
     std::string profileName;
 
