@@ -62,9 +62,11 @@ $(HUFFTRACE_BIN): $(HUFFTRACE_OBJS) | dirs
 $(BTDTRACE_BIN): $(BTDTRACE_OBJS) | dirs
 	$(CXX) $(LDFLAGS) $^ -o $@
 
-# Optional top-level main target (only if you need it)
-$(TOP_BIN): $(TOP_OBJS) | dirs
-	$(CXX) $(LDFLAGS) $^ -o $@
+.PHONY: harness huffman_trace batch_then_drain_trace all clean dirs
+
+harness:            $(HARNESS_BIN)
+huffman_trace:      $(HUFFTRACE_BIN)
+batch_then_drain_trace: $(BTDTRACE_BIN)
 
 clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
