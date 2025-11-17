@@ -26,7 +26,7 @@ struct TraceConfig {
 
     std::vector<unsigned> seeds = {23};  // only one seed to get started.
     std::vector<unsigned> Ns;
-    std::string traceDirectory = (std::filesystem::path(__FILE__).parent_path().parent_path().parent_path() / "traces").string();
+    std::string traceDirectory = (std::filesystem::path(__FILE__).parent_path().parent_path() / "traces").string();
     std::string implementationName;
     std::string profileName;
 
@@ -41,3 +41,4 @@ struct TraceConfig {
 
 
 #endif //PRIORITY_QUEUE_STUDY_TRACECONFIG_HPP
+
