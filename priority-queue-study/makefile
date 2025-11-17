@@ -23,8 +23,7 @@ HUFFTRACE_SRCS := \
 
 # Batch-then-drain trace generator
 BTDTRACE_SRCS := \
-  src/trace-generators/batch_then_drain/main.cpp \
-  traces/batch_then_drain/*
+  src/trace-generators/batch_then_drain/main.cpp 
 
 # ---- Targets ----
 HARNESS_BIN    := $(BIN_DIR)/harness
