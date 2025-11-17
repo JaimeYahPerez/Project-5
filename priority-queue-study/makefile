@@ -1,48 +1,70 @@
+
 CXX      := g++
-CXXFLAGS := -O3 -march=native -std=c++20 -Wall -Wextra -Isrc
+CXXFLAGS := -std=c++20 -O2 -Wall -Wextra -I.
+LDFLAGS  :=
 
-BIN_DIR  := bin
-TRACES   := traces
-CSVS     := csvs
+BIN_DIR := bin
+OBJ_DIR := obj
 
+# ---- Source lists (keep explicit & readable) ----
+# Harness (priority-queue runner)
 HARNESS_SRCS := \
   src/harness/main.cpp \
-  utils/comparator.cpp utils/TraceConfig.hpp \
-  $(wildcard src/implementations/BinaryHeapInVector/*.cpp) \
-  $(wildcard src/implementations/BinomialQueues/*.cpp) \
-  $(wildcard src/implementations/LinearBaseLine/*.cpp) \
-  $(wildcard src/implementations/Oracle/*.cpp)
+  src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp \
+  src/implementations/BinomialQueues/BinomialQueue.cpp \
+  src/implementations/BinomialQueues/BQnode.cpp \
+  src/implementations/LinearBaseLine/LinearBaseLine.cpp \
+  src/implementations/Oracle/QuadraticOracle.cpp \
+  utils/comparator.cpp
 
-HUFGEN_SRCS := src/trace-generators/huffman_coding/main.cpp
-BTDGEN_SRCS := src/trace-generators/batch_then_drain/main.cpp
+# Huffman trace generator
+HUFFTRACE_SRCS := \
+  src/trace-generators/huffman_coding/main.cpp
 
-.PHONY: all clean run-harness gen-huffman gen-btd
+# Batch-then-drain trace generator
+BTDTRACE_SRCS := \
+  src/trace-generators/batch_then_drain/main.cpp
 
-all: $(BIN_DIR)/harness $(BIN_DIR)/huffman_trace $(BIN_DIR)/batch_then_drain
+# Optional top-level main (if you use it)
+TOP_SRCS := \
+  main.cpp
 
-$(BIN_DIR)/harness: $(HARNESS_SRCS)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+# ---- Targets ----
+HARNESS_BIN    := $(BIN_DIR)/harness
+HUFFTRACE_BIN  := $(BIN_DIR)/huffman_trace
+BTDTRACE_BIN   := $(BIN_DIR)/batch_then_drain_trace
+TOP_BIN        := $(BIN_DIR)/top_level_main
 
-$(BIN_DIR)/huffman_trace: $(HUFGEN_SRCS)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+HARNESS_OBJS    := $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(HARNESS_SRCS))
+HUFFTRACE_OBJS  := $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(HUFFTRACE_SRCS))
+BTDTRACE_OBJS   := $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(BTDTRACE_SRCS))
+TOP_OBJS        := $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(TOP_SRCS))
 
-$(BIN_DIR)/batch_then_drain: $(BTDGEN_SRCS)
-	@mkdir -p $(BIN_DIR)
-	$(CXX) $(CXXFLAGS) $^ -o $@
+.PHONY: all clean dirs
+all: dirs $(HARNESS_BIN) $(HUFFTRACE_BIN) $(BTDTRACE_BIN)
 
-run-harness: $(BIN_DIR)/harness
-	@mkdir -p $(CSVS)
-	./$(BIN_DIR)/harness > $(CSVS)/batch_then_drain.csv
+dirs:
+	@mkdir -p $(BIN_DIR) $(OBJ_DIR)
+	@mkdir -p $(dir $(HARNESS_OBJS)) $(dir $(HUFFTRACE_OBJS)) $(dir $(BTDTRACE_OBJS)) $(dir $(TOP_OBJS))
 
-gen-huffman: $(BIN_DIR)/huffman_trace
-	@mkdir -p $(TRACES)/huffman_coding
-	./$(BIN_DIR)/huffman_trace
+# Pattern rule to build any .o under obj/ from a matching .cpp at project root
+$(OBJ_DIR)/%.o: %.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-gen-btd: $(BIN_DIR)/batch_then_drain
-	@mkdir -p $(TRACES)/batch_then_drain
-	./$(BIN_DIR)/batch_then_drain
+# Link rules
+$(HARNESS_BIN): $(HARNESS_OBJS) | dirs
+	$(CXX) $(LDFLAGS) $^ -o $@
+
+$(HUFFTRACE_BIN): $(HUFFTRACE_OBJS) | dirs
+	$(CXX) $(LDFLAGS) $^ -o $@
+
+$(BTDTRACE_BIN): $(BTDTRACE_OBJS) | dirs
+	$(CXX) $(LDFLAGS) $^ -o $@
+
+# Optional top-level main target (only if you need it)
+$(TOP_BIN): $(TOP_OBJS) | dirs
+	$(CXX) $(LDFLAGS) $^ -o $@
 
 clean:
-	rm -rf $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(BIN_DIR)
