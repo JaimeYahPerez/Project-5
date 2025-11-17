@@ -7,7 +7,7 @@ CSVS     := csvs
 
 HARNESS_SRCS := \
   src/harness/main.cpp \
-  utils/comparator.cpp src/utils/TraceConfig.hpp \
+  utils/comparator.cpp utils/TraceConfig.hpp \
   $(wildcard src/implementations/BinaryHeapInVector/*.cpp) \
   $(wildcard src/implementations/BinomialQueues/*.cpp) \
   $(wildcard src/implementations/LinearBaseLine/*.cpp) \
