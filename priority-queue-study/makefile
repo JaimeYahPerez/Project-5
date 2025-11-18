@@ -1,5 +1,5 @@
 CXX       ?= g++
-CXXFLAGS  ?= -std=c++17 -O2 -Wall
+CXXFLAGS  ?= -std=c++17 -O2
 INCLUDES  ?= -I.
 
 
@@ -35,3 +35,4 @@ $(BIN_DIR)/batch_then_drain_trace:
 
 clean:
 	rm -rf $(BIN_DIR)
+
