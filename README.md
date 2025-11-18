@@ -34,6 +34,16 @@ A new executable was added for the batch then drain generator. <br>
 The base directory where the path to the traces directory was modified to use the <filesystem> library and write out a proper path including the parent_path() calls to search for the traces directory. <br>
 
 "priority-queue-study\makefile" <br>
-Due to the older version of cmake on blue, I resorted to writing out a makefile for compiling on blue. 
-## Testing and Status
+Due to the older version of cmake on blue, I resorted to writing out a makefile for compiling on blue. This makefile includes the standard compile flags, along with optimization activated with more optimization -O2. An extra flag is also included to allow for all directories in the project root with -I . <br>
 
+The included directories mimics what were included for the executables in cmakelists for both the harness and batch then drain programs. With a bin directory being made to host the new executables. The .phony declares phony targets with all and clean to ensure that it is never confused with file name calls. <br>
+
+The makefile lastly constructs the executables in the bin directory for the harness and batch then drain trace generator main files using the prepared structure earlier in the makefile. Along with an additional clean call to remove older executables within the bin directory, if it has been made already. <br>
+## Testing and Status
+Trials were ran initially on clion which provided data for initial analysis for the report. Which showed the initial implementations that I made for harness and batch_then_drain trace generator to be working. However, what delayed the submission of this project part was getting it to compile on blue, as the cmake version on blue was older than what was used on clion. I unfortunately overcomplicated my attempts to make this compile, but eventually the proper fixes were made to allow the trace generator for batch then drain to locate the trace directory. The current implementation of makefile and TraceConfig.hpp have proved to be working and the program now successfully compile and produce csv data on blue. <br>
+In the directory priority-queue-study these commands can be ran to reproduce the trials. <br>
+<br>
+make clean <br>
+make <br>
+./bin/batch_then_drain_trace <br>
+./bin/harness <br>
