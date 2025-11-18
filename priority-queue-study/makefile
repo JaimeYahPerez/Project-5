@@ -1,12 +1,24 @@
 CXX       ?= g++
-CXXFLAGS  ?= -std=c++17 -O2
+CXXFLAGS  ?= -std=c++17 -O2 -Wall
 INCLUDES  ?= -I.
 
 
 # Source lists.
-IMPL_SRCS      := $(shell find src/implementations -type f -name '*.cpp' 2>/dev/null)
-HARNESS_SRCS   := $(wildcard src/harness/*.cpp) $(IMPL_SRCS) $(wildcard utils/*.cpp)
-BTD_SRCS       := $(wildcard src/trace-generators/batch_then_drain/*.cpp) $(wildcard utils/*.cpp)
+HARNESS_SRCS := \
+  src/harness/main.cpp \
+  src/implementations/BinaryHeapInVector/BinaryHeapInVector.cpp \
+  src/implementations/BinomialQueues/BinomialQueue.cpp \
+  src/implementations/BinomialQueues/BQnode.cpp \
+  src/implementations/BinomialQueues/InvertedListDictionary.cpp \
+  src/implementations/LinearBaseLine/LinearBaseLine.cpp \
+  src/implementations/Oracle/QuadraticOracle.cpp \
+  utils/comparator.cpp \
+  utils/TraceConfig.cpp
+
+BTD_SRCS := \
+  src/trace-generators/batch_then_drain/main.cpp \
+  utils/comparator.cpp \
+  utils/TraceConfig.cpp
 
 BIN_DIR := bin
 
@@ -22,5 +34,4 @@ $(BIN_DIR)/batch_then_drain_trace:
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BTD_SRCS) -o $@ $(FS_FLAG)
 
 clean:
-
 	rm -rf $(BIN_DIR)
