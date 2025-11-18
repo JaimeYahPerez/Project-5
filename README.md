@@ -7,6 +7,9 @@ Along with those pages as reference, I also reused the provided example program 
 Which would lead to the reusing of code for the modified and added files for this implementation of the batch then drain profile. <br>
 when it came to troubleshooting compiling errors, chatgpt was once again used to help find errors and missing configurations for execution on CLion.<br>
 
+"priority-queue-study\makefile" <br>
+Due to the older version of cmake on blue, I resorted to writing out a makefile for compiling on blue. The format of this file was initially meant to be modeled after the cmakelists text file and after what was used for a project in cs370. However in order to ensure that the assignment wouldn't be further delayed for submission, I resorted to utilizing chatgpt to troubeshoot and assist with the writing of the makefile. <br>
+
 ## Implementation Details
 "priority-queue-study\src\harness\main.cpp" <br>
 The harness was modified to allow for argumenets to be passed into main(), and to setup the batch_then_drain generator by default. <br>
@@ -25,6 +28,12 @@ This csv file was made preemptively due to an error occurring during execution, 
 The html file was adjusted to display csv data of a test run of my implemention of batch then drain by default. It was also adjusted to state "batch then drain trace" in the header. <br>
 
 "priority-queue-study\CMakeLists.txt" <br>
-A new executable was added for the batch then drain generator.
+A new executable was added for the batch then drain generator. <br>
+
+"priority-queue-study\utils\TraceConfig.hpp" <br>
+The base directory where the path to the traces directory was modified to use the <filesystem> library and write out a proper path including the parent_path() calls to search for the traces directory. <br>
+
+"priority-queue-study\makefile" <br>
+Due to the older version of cmake on blue, I resorted to writing out a makefile for compiling on blue. 
 ## Testing and Status
 
