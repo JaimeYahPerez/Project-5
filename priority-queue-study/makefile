@@ -1,5 +1,5 @@
 CXX       ?= g++
-CXXFLAGS  ?= -std=c++17 -O2 -Wall
+CXXFLAGS  ?= -std=c++17 -O2
 INCLUDES  ?= -I.
 
 
@@ -22,4 +22,5 @@ $(BIN_DIR)/batch_then_drain_trace:
 	$(CXX) $(CXXFLAGS) $(INCLUDES) $(BTD_SRCS) -o $@ $(FS_FLAG)
 
 clean:
+
 	rm -rf $(BIN_DIR)
