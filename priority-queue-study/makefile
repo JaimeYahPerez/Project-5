@@ -17,7 +17,6 @@ HARNESS_SRCS := \
 
 BTD_SRCS := \
   src/trace-generators/batch_then_drain/main.cpp \
-  utils/comparator.cpp \
   utils/TraceConfig.cpp
 
 BIN_DIR := bin
@@ -35,4 +34,5 @@ $(BIN_DIR)/batch_then_drain_trace:
 
 clean:
 	rm -rf $(BIN_DIR)
+
 
